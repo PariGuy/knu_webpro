@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My ToDo App</title>
+<style>
+	h2 {
+		border-radius: 5px;
+		background-color: SandyBrown;
+		text-align: left;
+		padding : 15px 0;
+	}
+	
+	#regform{
+		padding: 15px 20px;
+		border-radius: 10px;
+		margin: auto;
+		width: 50%;
+		background-color: SandyBrown;
+	}
+	#item{
+		width: 85%;
+	}
+</style>
+<script>
+	function addItem(){
+		// 새로운 할 일 목록 아이템 생성
+		let todo = document.getElementById("item");
+		let list = document.getElementById("todolist");
+		let listitem = document.createElement("li");
+		listitem.className =
+			"d-flex list-group-item list-group-item-action list-group-item-warning";
+		let xbtn = document.createElement("button");
+		
+		// 삭제 버튼 추가
+		xbtn.className = "btn-close ms-auto";
+		xbtn.onclick = function(e){
+			let pnode = e.target.parentNode;
+			list.removeChild(pnode);
+		}
+		xbtn.innerHTML="X";
+		listitem.innerText = todo.value;
+		listitem.appendChild(xbtn);
+		list.appendChild(listitem);
+		
+		// 할 일 입력 필드 초기화 및 포커스 이동
+		todo.value = "";
+		todo.focus();
+	}
+</script>
+</head>
+<body>
+	<div id="regform">
+		<h2>My ToDo App</h2>
+		<hr>
+		<div class = "input-group">
+			<input id="item" class="form-control" type="text" placeholder="할 일을 입력하세요">
+			<button type="button" class="btn btn-primary" onClick="addItem()">할일 추가</button>
+		</div>
+		<hr>
+		<ul id="todolist" class="list-group" style="background-color: wheat;"></ul>
+	</div>
+</body>
+</html>
